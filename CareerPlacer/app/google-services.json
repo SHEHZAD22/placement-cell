@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1031785287023",
+    "project_id": "careerplacer-d7907",
+    "storage_bucket": "careerplacer-d7907.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031785287023:android:cd7ae24f6c3e07dc922c9a",
+        "android_client_info": {
+          "package_name": "com.shehzad.careerplacer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031785287023-osbustq50ik7mcpa6pr9tja6sheevrc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shehzad.careerplacer",
+            "certificate_hash": "8366154b4890b3066305b19f0b4db8f748f97d5e"
+          }
+        },
+        {
+          "client_id": "1031785287023-59s4fcct64j0108heoqfqd5reml2bb0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwFFh37ON4Deao2k1E7cwa-P4ruroPWaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031785287023-59s4fcct64j0108heoqfqd5reml2bb0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
