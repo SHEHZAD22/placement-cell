@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -17,6 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CareerPlacer"
         tools:targetApi="31">
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".student.ui.job.ShowAppliedJobActivity"
             android:exported="false">
@@ -93,44 +100,44 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".student.StudentActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Student">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".admin.ui.deletescreens.DeleteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.DeleteActivity"
+            android:name=".admin.ui.AddResourcesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.AddResourcesActivity"
+            android:name=".admin.ui.AddNoticeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.AddNoticeActivity"
+            android:name=".admin.ui.AddJobActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.AddJobActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".admin.AddEventActivity"
+            android:name=".admin.ui.AddEventActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

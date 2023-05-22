@@ -16,7 +16,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-
+<!--  teal200  FF03DAC5-->
 
     <color name="pink_100">#FFCDD2</color>
     <color name="blue_100">#BBDEFB</color>
@@ -32,6 +32,7 @@
     <color name="green_a700">#00C853</color>
     <color name="blue_a700">#0091EA</color>
     <color name="pink_a700">#C51162</color>
+    <color name="red_a700">#D50000</color>
     <color name="gray_50">#F6F6FB</color>
     <color name="gray_100">#E4E4DF</color>
 

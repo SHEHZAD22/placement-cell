@@ -1,30 +1,19 @@
 package com.shehzad.careerplacer.student.ui.job;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.provider.Settings;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,14 +24,12 @@ import com.shehzad.careerplacer.R;
 import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.databinding.FragmentJobBinding;
 import com.shehzad.careerplacer.student.adapter.JobAdapter;
-import com.shehzad.careerplacer.student.ui.job.adapter.AppliedJobAdapter;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 
 public class JobFragment extends Fragment {
@@ -50,8 +37,10 @@ public class JobFragment extends Fragment {
 
     private FragmentJobBinding binding;
     private ArrayList<JobModel> list;
+//    private ArrayList<JobModel> searchList;
     private JobAdapter adapter;
     private DatabaseReference reference;
+    private AppliedJobViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +50,8 @@ public class JobFragment extends Fragment {
 
         reference = FirebaseDatabase.getInstance().getReference().child("Job");
 
+        viewModel = new ViewModelProvider(this).get(AppliedJobViewModel.class);
+
         binding.jobRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.jobRecView.setHasFixedSize(true);
 
@@ -69,15 +60,31 @@ public class JobFragment extends Fragment {
 
 
         binding.topAppBar.setOnMenuItemClickListener(item -> {
+//            int menuItem = item.getItemId();
             switch (item.getItemId()) {
-                case R.id.search:
-                    Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
-                    return true;
+
                 case R.id.appliedJob:
                     startActivity(new Intent(getActivity(), ShowAppliedJobActivity.class));
                     return true;
                 default:
                     return false;
+//                case R.id.search:
+//                    SearchView searchView = (SearchView) item.getActionView();
+//                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                        @Override
+//                        public boolean onQueryTextSubmit(String query) {
+//                            getData();
+//                            return true;
+//                        }
+//
+//                        @Override
+//                        public boolean onQueryTextChange(String newText) {
+//                            return true;
+//                        }
+//                    });
+//                    Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
+//                    return true;
+
             }
         });
 
@@ -87,22 +94,25 @@ public class JobFragment extends Fragment {
     }
 
 
-
-
     private void getData() {
-        if (isConnectedToInternet()) {
+        if (MyResources.isConnectedToInternet(getContext())) {
 
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     list = new ArrayList<>();
+//                    searchList = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+//                        String title = snapshot.child("title").getValue(String.class);
+//                        String description = snapshot.child("title").getValue(String.class);
+//                        if ()
                         JobModel data = snapshot.getValue(JobModel.class);
                         list.add(data);
                     }
 
                     Collections.reverse(list);
-                    adapter = new JobAdapter(getContext(), list);
+                    adapter = new JobAdapter(getContext(), list, viewModel);
                     adapter.notifyDataSetChanged();
                     binding.progressBar.setVisibility(View.GONE);
                     binding.jobRecView.setAdapter(adapter);
@@ -127,14 +137,14 @@ public class JobFragment extends Fragment {
         snackbar.show();
     }
 
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        }
-        return false;
-    }
+//    private boolean isConnectedToInternet() {
+//        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (connectivityManager != null) {
+//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+//        }
+//        return false;
+//    }
 
 //    @Override
 //    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

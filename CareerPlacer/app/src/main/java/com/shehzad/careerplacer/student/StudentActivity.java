@@ -27,12 +27,14 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStudentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide();
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navController = Navigation.findNavController(this,R.id.frameLayout);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+
     }
 }

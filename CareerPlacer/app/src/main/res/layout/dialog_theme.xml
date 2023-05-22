@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/themeRadioGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="30dp"
+    android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/darkMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dark Mode" />
+
+    <RadioButton
+        android:id="@+id/lightMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light Mode" />
+
+    <RadioButton
+        android:id="@+id/systemMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="System Default" />
+
+</RadioGroup>

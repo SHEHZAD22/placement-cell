@@ -103,7 +103,7 @@ List<Integer> colorCode;
             binding.position.setText(model.getPosition());
 
 //            binding.image.setBackgroundColor(colors[randomNumber]);
-//            binding.image.setBackgroundColor(MyResources.getRandomColor());
+            binding.image.setBackgroundColor(MyResources.getRandomColor());
 //            binding.image.setBackgroundColor(getRandomColor());
 ////            binding.image.setBackgroundColor(getRandomColor());
 //            binding.image.setBackgroundColor(itemView.getResources().getColor(getRandomColor()));

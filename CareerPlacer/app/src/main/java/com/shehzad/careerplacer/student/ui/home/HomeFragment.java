@@ -1,6 +1,5 @@
 package com.shehzad.careerplacer.student.ui.home;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -9,12 +8,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,19 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shehzad.careerplacer.R;
-import com.shehzad.careerplacer.admin.AddEventActivity;
-import com.shehzad.careerplacer.admin.AddJobActivity;
-import com.shehzad.careerplacer.admin.AddNoticeActivity;
-import com.shehzad.careerplacer.admin.AddResourcesActivity;
-import com.shehzad.careerplacer.admin.DeleteActivity;
-import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.admin.model.RegisterModel;
 import com.shehzad.careerplacer.databinding.FragmentHomeBinding;
-import com.shehzad.careerplacer.student.StudentActivity;
-import com.shehzad.careerplacer.student.adapter.EventAdapter;
 import com.shehzad.careerplacer.student.adapter.JobAdapter;
 import com.shehzad.careerplacer.student.ui.job.JobFragment;
+import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.ArrayList;
@@ -56,6 +48,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference reference;
     private DatabaseReference studentReference;
     private FirebaseAuth auth;
+    private AppliedJobViewModel viewModel;
 
 
     @Override
@@ -69,6 +62,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         auth = FirebaseAuth.getInstance();
 
+        viewModel = new ViewModelProvider(this).get(AppliedJobViewModel.class);
+
 
         binding.jobRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.jobRecView.setHasFixedSize(true);
@@ -78,10 +73,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.resources.setOnClickListener(this);
 
         binding.seeAll.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(binding.getRoot());
-            navController.popBackStack();
-            navController.navigate(R.id.navigation_job);
-//            Navigation.findNavController(binding.getRoot()).navigate(R.id.navigation_job);
+            MyResources.showToast(getContext(), "Press back button to go back", "l");
+            Navigation.findNavController(v).navigate(R.id.navigation_job);
         });
 
 
@@ -93,10 +86,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-
     private void getData() {
-        if (isConnectedToInternet()) {
+        if (MyResources.isConnectedToInternet(getContext())) {
             reference.limitToLast(10).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -107,7 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
 
                     Collections.reverse(list);
-                    adapter = new JobAdapter(getContext(), list);
+                    adapter = new JobAdapter(getContext(), list, viewModel);
                     adapter.notifyDataSetChanged();
                     binding.progressBar.setVisibility(View.GONE);
                     binding.jobRecView.setAdapter(adapter);
@@ -120,7 +111,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     MyResources.showToast(getContext(), error.getMessage(), "short");
                 }
             });
-        }  else showErrorSnackBar();
+        } else showErrorSnackBar();
     }
 
     private void setStudentDetails() {
@@ -168,14 +159,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        }
-        return false;
-    }
+//    private boolean isConnectedToInternet() {
+//        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (connectivityManager != null) {
+//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+//        }
+//        return false;
+//    }
 
     //showing an error dialog box
     private void showErrorSnackBar() {

@@ -5,7 +5,7 @@
     <string name="add_event">Add Event</string>
     <string name="add_job">Add Job</string>
     <string name="add_notice">Add Notice</string>
-    <string name="add_resources">Resources</string>
+    <string name="add_resources">Add Resources</string>
     <string name="resources">Add Resources</string>
     <string name="add_gallery">Add Image</string>
     <string name="delete">Delete</string>
@@ -109,5 +109,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="name">Shehzad Malik</string>
 
 </resources>

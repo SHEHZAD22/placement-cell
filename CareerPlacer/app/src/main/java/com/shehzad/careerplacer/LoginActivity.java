@@ -42,6 +42,11 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.loginButton.setOnClickListener(view -> onLoginClicked());
 
+        binding.forgotPassword.setOnClickListener(view -> {
+            startActivity(new Intent(this, ForgotPasswordActivity.class));
+            finish();
+        });
+
         binding.admin.setOnClickListener(view -> {
             startActivity(new Intent(this, AdminLoginActivity.class));
             finish();
@@ -51,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, RegisterActivity.class));
             finish();
         });
+
     }
 
     private void onLoginClicked() {
@@ -76,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }).addOnFailureListener(e -> {
             MyResources.dismissProgressDialog();
-            MyResources.showToast(getApplicationContext(), "Failure : \n"+ e.getMessage(),"long");
+            MyResources.showToast(getApplicationContext(), "Failure : \n" + e.getMessage(), "long");
         });
     }
 

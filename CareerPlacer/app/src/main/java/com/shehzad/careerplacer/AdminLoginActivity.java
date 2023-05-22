@@ -31,22 +31,20 @@ public class AdminLoginActivity extends AppCompatActivity {
     private void onLoginClicked() {
         String username = binding.username.getText().toString();
         String password = binding.password.getText().toString();
-        if (username.isEmpty()) {
-            binding.usernameInputLayout.setError("Username must not be empty");
-        } else if (password.isEmpty()) {
+
+        if (username.isEmpty()) binding.usernameInputLayout.setError("Username must not be empty");
+        else if (password.isEmpty())
             binding.passwordInputLayout.setError("Password must not be empty");
-        } else if ((!username.equals("shehzad")) && (!password.equals("iamPro007"))) {
-            showErrorDialog();
-        } else {
-            startMainactivity();
-        }
+        else if (!username.equals("admin007")) showErrorDialog("Username");
+        else if ( !password.equals("iamAdmin007@")) showErrorDialog("Password");
+        else startMainactivity();
     }
 
     //Validation & error dialog
-    private void showErrorDialog() {
+    private void showErrorDialog(String s) {
         new AlertDialog.Builder(this)
                 .setTitle("Login Failed")
-                .setMessage("Username or password is not correct. Please try again.")
+                .setMessage(s + " is not correct. Please try again.")
                 .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                 .show();
     }

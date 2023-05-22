@@ -3,6 +3,9 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     namespace 'com.shehzad.careerplacer'
     compileSdk 33
@@ -15,6 +18,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "USERNAME", localProperties['USERNAME'])
+
+        buildConfigField("String", "PASSWORD", localProperties['PASSWORD'])
     }
 
     buildTypes {

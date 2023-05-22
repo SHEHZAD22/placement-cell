@@ -1,20 +1,24 @@
 package com.shehzad.careerplacer.admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.shehzad.careerplacer.R;
+import com.shehzad.careerplacer.admin.ui.AddEventActivity;
+import com.shehzad.careerplacer.admin.ui.AddJobActivity;
+import com.shehzad.careerplacer.admin.ui.AddNoticeActivity;
+import com.shehzad.careerplacer.admin.ui.AddResourcesActivity;
+import com.shehzad.careerplacer.admin.ui.deletescreens.DeleteActivity;
 import com.shehzad.careerplacer.databinding.ActivityMainBinding;
-import com.shehzad.careerplacer.student.StudentActivity;
+import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
@@ -26,35 +30,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.admin_text);
 
-        binding.addEvent.setOnClickListener(this);
-        binding.addJob.setOnClickListener(this);
-        binding.addNotice.setOnClickListener(this);
-        binding.addResources.setOnClickListener(this);
-        binding.delete.setOnClickListener(this);
-        binding.addImage.setOnClickListener(this);
+        if (MyResources.isConnectedToInternet(this)) {
+            binding.addEvent.setOnClickListener(v -> startActivity(new Intent(this, AddEventActivity.class)));
+            binding.addJob.setOnClickListener(v -> startActivity(new Intent(this, AddJobActivity.class)));
+            binding.addNotice.setOnClickListener(v -> startActivity(new Intent(this, AddNoticeActivity.class)));
+            binding.addResources.setOnClickListener(v -> startActivity(new Intent(this, AddResourcesActivity.class)));
+            binding.delete.setOnClickListener(v -> showDeleteDialog());
+        } else showErrorSnackBar();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.addEvent:
-                startActivity(new Intent(this, AddEventActivity.class));
-                break;
-            case R.id.addJob:
-                startActivity(new Intent(this, AddJobActivity.class));
-                break;
-            case R.id.addNotice:
-                startActivity(new Intent(this, AddNoticeActivity.class));
-                break;
-            case R.id.addResources:
-                startActivity(new Intent(this, AddResourcesActivity.class));
-                break;
-            case R.id.delete:
-                startActivity(new Intent(this, DeleteActivity.class));
-                break;
-            case R.id.addImage:
-                startActivity(new Intent(this, StudentActivity.class));
-                break;
-        }
+    private void showDeleteDialog() {
+        final String[] items = {"Notice", "Event", "Job"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle("Click Item to Delete")
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                        case 1:
+                        case 2:
+                            startDeleteActivity(items[which]);
+                            dialog.dismiss();
+                            break;
+                    }
+                })
+                .setCancelable(true);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
+
+    private void startDeleteActivity(String title) {
+        Intent intent = new Intent(this, DeleteActivity.class);
+        intent.putExtra("title", title);
+        startActivity(intent);
+    }
+
+    private void showErrorSnackBar() {
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Check your network connection..", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("Retry", view -> {
+            snackbar.dismiss();
+            recreate();
+        });
+        snackbar.show();
+    }
+
 }

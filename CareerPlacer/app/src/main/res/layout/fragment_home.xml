@@ -31,9 +31,9 @@
                 layout="@layout/circle_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="16dp"
+                android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_marginTop="16dp" />
 
             <TextView
                 android:id="@+id/studentName"

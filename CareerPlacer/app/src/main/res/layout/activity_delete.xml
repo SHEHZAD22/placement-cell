@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.DeleteActivity">
+    tools:context=".admin.ui.deletescreens.DeleteActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/deleteNoticeRecView"
+        android:id="@+id/deleteRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/delete_notice_item_layout" />
+        tools:listitem="@layout/delete_item_layout" />
 
     <ProgressBar
         android:id="@+id/progressBar"

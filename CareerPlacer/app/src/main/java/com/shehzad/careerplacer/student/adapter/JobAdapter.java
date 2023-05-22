@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,29 +17,21 @@ import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.databinding.JobItemLayoutBinding;
 import com.shehzad.careerplacer.student.ui.job.ApplyJobActivity;
 import com.shehzad.careerplacer.student.ui.job.ViewJobActivity;
-import com.shehzad.careerplacer.student.ui.job.db.AppliedJob;
-import com.shehzad.careerplacer.student.ui.job.db.AppliedJobDao;
-import com.shehzad.careerplacer.student.ui.job.db.MyDatabase;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<JobModel> list;
     private AppliedJobViewModel viewModel ;
-//    MyDatabase myDatabase;
-//    AppliedJobDao jobDao;
 
-    public JobAdapter(Context context, ArrayList<JobModel> list) {
+    public JobAdapter(Context context, ArrayList<JobModel> list, AppliedJobViewModel viewModel) {
         this.context = context;
         this.list = list;
-        viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(AppliedJobViewModel.class);
-//        myDatabase = MyDatabase.getDbInstance(context);
-//        jobDao = myDatabase.appliedJobDao();
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -60,11 +51,6 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
     public int getItemCount() {
         return list.size();
     }
-//
-//    public void submitList(List<AppliedJob> list) {
-//        this.list = list;
-//    }
-
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final JobItemLayoutBinding binding;

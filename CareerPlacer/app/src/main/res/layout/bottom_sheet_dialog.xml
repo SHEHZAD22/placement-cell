@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_bg"
+    android:padding="20dp">
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Delete" />
+
+    <TextView
+        android:id="@+id/deleteNotice"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_delete"
+        android:drawablePadding="5dp"
+        android:drawableTint="?attr/colorOnBackground"
+        android:text="Notice" />
+
+    <TextView
+        android:id="@+id/deleteEvent"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_delete"
+        android:drawablePadding="5dp"
+        android:drawableTint="?attr/colorOnBackground"
+        android:text="Event" />
+
+    <TextView
+        android:id="@+id/deleteJob"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_delete"
+        android:drawablePadding="5dp"
+        android:drawableTint="?attr/colorOnBackground"
+        android:text="Job" />
+
+</LinearLayout>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".admin.AddJobActivity">
+    tools:context=".admin.ui.AddJobActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/skills"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences|textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -159,6 +159,7 @@
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
                 android:hint="@string/job_location" />
 
         </com.google.android.material.textfield.TextInputLayout>

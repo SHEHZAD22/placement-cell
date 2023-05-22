@@ -19,17 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.shehzad.careerplacer.R;
-import com.shehzad.careerplacer.admin.AddResourcesActivity;
-import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.databinding.ActivityApplyJobBinding;
 import com.shehzad.careerplacer.student.ui.job.db.AppliedJob;
-import com.shehzad.careerplacer.student.ui.job.db.AppliedJobDao;
-import com.shehzad.careerplacer.student.ui.job.db.MyDatabase;
 import com.shehzad.careerplacer.student.ui.job.model.StudentResumeModel;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 public class ApplyJobActivity extends AppCompatActivity {
@@ -42,9 +37,7 @@ public class ApplyJobActivity extends AppCompatActivity {
     StorageReference storageReference;
     private String pdfName;
     private String name, email, phoneNumber, qualification, branch, pincode, location;
-    //    private JobModel jobModel;
-//MyDatabase myDatabase;
-//    AppliedJobDao jobDao;
+
     private AppliedJobViewModel viewModel;
 
     @Override
