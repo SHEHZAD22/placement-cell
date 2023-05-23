@@ -35,9 +35,9 @@ public class AdminLoginActivity extends AppCompatActivity {
         if (username.isEmpty()) binding.usernameInputLayout.setError("Username must not be empty");
         else if (password.isEmpty())
             binding.passwordInputLayout.setError("Password must not be empty");
-        else if (!username.equals("admin007")) showErrorDialog("Username");
-        else if ( !password.equals("iamAdmin007@")) showErrorDialog("Password");
-        else startMainactivity();
+        else if (!username.equals(BuildConfig.USERNAME)) showErrorDialog("Username");
+        else if (!password.equals(BuildConfig.PASSWORD)) showErrorDialog("Password");
+        else startMainActivity();
     }
 
     //Validation & error dialog
@@ -49,7 +49,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void startMainactivity() {
+    private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

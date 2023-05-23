@@ -59,8 +59,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@id/postedDate"
                     android:drawableStart="@drawable/ic_time"
-                    android:drawableTint="?attr/colorOnBackground"
                     android:drawablePadding="2dp"
+                    android:drawableTint="?attr/colorOnBackground"
                     android:text="Posted On: " />
 
                 <TextView
@@ -89,11 +89,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/jobType"
                     android:layout_marginTop="8dp"
-                    android:layout_toLeftOf="@id/applyDate"
                     android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/applyDate"
                     android:drawableStart="@drawable/ic_apply"
-                    android:drawableTint="?attr/colorOnBackground"
                     android:drawablePadding="5dp"
+                    android:drawableTint="?attr/colorOnBackground"
                     android:text="Apply by " />
 
                 <TextView
@@ -164,7 +164,6 @@
                 android:text="@string/dummy_text" />
 
 
-
             <TextView
                 style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
@@ -195,7 +194,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="any graduate of Bca Mca Btech 2023 passout" />
-
 
 
             <com.google.android.material.button.MaterialButton

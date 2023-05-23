@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".student.ui.profile.ProfileFragment">
 
-
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
@@ -98,8 +97,8 @@
             android:layout_marginTop="100dp"
             android:drawableEnd="@drawable/ic_forward_arrow"
             android:drawableTint="@color/red_a700"
-            android:textColor="@color/red_a700"
-            android:text="Delete Account" />
+            android:text="Delete Account"
+            android:textColor="@color/red_a700" />
 
     </LinearLayout>
 

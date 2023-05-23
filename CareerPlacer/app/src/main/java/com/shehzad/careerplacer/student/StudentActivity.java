@@ -1,17 +1,14 @@
 package com.shehzad.careerplacer.student;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.shehzad.careerplacer.R;
-import com.shehzad.careerplacer.databinding.ActivityDeleteBinding;
 import com.shehzad.careerplacer.databinding.ActivityStudentBinding;
 
 import java.util.Objects;
@@ -19,8 +16,6 @@ import java.util.Objects;
 public class StudentActivity extends AppCompatActivity {
 
     ActivityStudentBinding binding;
-    private BottomNavigationView bottomNavigationView;
-    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +25,9 @@ public class StudentActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-
-
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        navController = Navigation.findNavController(this,R.id.frameLayout);
-        NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        NavController navController = Navigation.findNavController(this, R.id.frameLayout);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }
 }

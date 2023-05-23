@@ -107,14 +107,10 @@ public class ApplyJobActivity extends AppCompatActivity {
     }
 
     private void uploadData(String resume) {
-//        String jobTitle = "N/A", jobPosition = "N/A";
         Bundle bundle = getIntent().getExtras();
 
-//        if (bundle != null) {
         String jobTitle = bundle.getString("title");
         String jobPosition = bundle.getString("position");
-//        }
-
         //inserting into database
         AppliedJob appliedJob = new AppliedJob(jobTitle, jobPosition);
         viewModel.insert(appliedJob);
@@ -157,30 +153,13 @@ public class ApplyJobActivity extends AppCompatActivity {
 
     private String getFileNameFromUri(Uri uri) {
         String result = "default";
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        try {
+        try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
             if (cursor != null && cursor.moveToFirst()) {
                 int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                 result = cursor.getString(index);
             }
-        } finally {
-            cursor.close();
         }
         return result;
-    }
-
-    private void clearTextFields() {
-
-        binding.viewPdf.setText(R.string.no_file_selected);
-        binding.name.setText("");
-        binding.email.setText("");
-        binding.pincode.setText("");
-        binding.phoneNumber.setText("");
-        binding.pincode.setText("");
-        binding.qualification.setText("");
-        binding.branch.setText("");
-        binding.location.setText("");
-        pdfUri = null;
     }
 
     @Override

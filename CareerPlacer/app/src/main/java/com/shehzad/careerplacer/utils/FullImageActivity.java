@@ -20,7 +20,7 @@ public class FullImageActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Objects.requireNonNull(getSupportActionBar()).hide();
-        //make activity fulll screen
+        //make activity full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

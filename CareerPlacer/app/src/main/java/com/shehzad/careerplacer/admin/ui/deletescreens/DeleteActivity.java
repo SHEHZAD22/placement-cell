@@ -1,20 +1,18 @@
 package com.shehzad.careerplacer.admin.ui.deletescreens;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shehzad.careerplacer.R;
 import com.shehzad.careerplacer.admin.adapter.DeleteAdapter;
 import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.databinding.ActivityDeleteBinding;
@@ -59,7 +57,6 @@ public class DeleteActivity extends AppCompatActivity {
                     list = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         EventModel data = snapshot.getValue(EventModel.class);
-//                        Log.d("snapshot", "onDataChange: " + data);
                         list.add(data);
                     }
                     adapter = new DeleteAdapter(getApplicationContext(), list, title);

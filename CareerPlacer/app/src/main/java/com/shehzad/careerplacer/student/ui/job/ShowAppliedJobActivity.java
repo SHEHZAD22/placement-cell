@@ -1,12 +1,13 @@
 package com.shehzad.careerplacer.student.ui.job;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
+
 import com.shehzad.careerplacer.databinding.ActivityShowAppliedJobBinding;
 import com.shehzad.careerplacer.student.ui.job.adapter.AppliedJobAdapter;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;

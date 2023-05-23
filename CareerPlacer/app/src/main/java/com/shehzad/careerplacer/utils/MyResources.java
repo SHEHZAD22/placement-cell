@@ -1,8 +1,5 @@
 package com.shehzad.careerplacer.utils;
 
-import static android.os.Build.VERSION_CODES.R;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,7 +10,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;

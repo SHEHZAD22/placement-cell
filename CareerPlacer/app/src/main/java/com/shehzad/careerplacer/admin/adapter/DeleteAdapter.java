@@ -20,15 +20,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.shehzad.careerplacer.R;
 import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.databinding.DeleteItemLayoutBinding;
-import com.shehzad.careerplacer.databinding.DeleteItemLayoutBinding;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.ArrayList;
 
 public class DeleteAdapter extends RecyclerView.Adapter<DeleteAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<EventModel> list;
+    private final Context context;
+    private final ArrayList<EventModel> list;
     String title;
 
     public DeleteAdapter(Context context, ArrayList<EventModel> list, String title) {

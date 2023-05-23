@@ -1,21 +1,16 @@
 package com.shehzad.careerplacer.admin.ui;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -23,12 +18,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.shehzad.careerplacer.R;
 import com.shehzad.careerplacer.admin.model.EventModel;
-import com.shehzad.careerplacer.utils.MyResources;
 import com.shehzad.careerplacer.databinding.ActivityAddEventBinding;
+import com.shehzad.careerplacer.utils.MyResources;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Objects;
 
 public class AddEventActivity extends AppCompatActivity {
@@ -60,8 +53,8 @@ public class AddEventActivity extends AppCompatActivity {
 
 
     private void onUploadBtnClicked() {
-        String title = binding.eventTitle.getText().toString();
-        String description = binding.eventDescription.getText().toString();
+        String title = Objects.requireNonNull(binding.eventTitle.getText()).toString();
+        String description = Objects.requireNonNull(binding.eventDescription.getText()).toString();
         if (title.isEmpty()) binding.titleInputLayout.setError("Must not be empty");
         else if (description.isEmpty())
             binding.descriptionInputLayout.setError("Must not be empty");
@@ -92,9 +85,9 @@ public class AddEventActivity extends AppCompatActivity {
 
     private void uploadData() {
         MyResources.showProgressDialog(this, "Uploading...");
-        String title = binding.eventTitle.getText().toString();
-        String description = binding.eventDescription.getText().toString();
-        String url = binding.eventUrl.getText().toString();
+        String title = Objects.requireNonNull(binding.eventTitle.getText()).toString();
+        String description = Objects.requireNonNull(binding.eventDescription.getText()).toString();
+        String url = Objects.requireNonNull(binding.eventUrl.getText()).toString();
 
         reference = databaseReference.child("Event");
         final String key = reference.push().getKey();
@@ -103,7 +96,7 @@ public class AddEventActivity extends AppCompatActivity {
         String time = MyResources.getDateTime("time");
 
         EventModel eventModel = new EventModel(title, description, url, downloadImgUrl, date, time, key);
-        reference.child(key).setValue(eventModel).addOnSuccessListener(unused -> {
+        reference.child(Objects.requireNonNull(key)).setValue(eventModel).addOnSuccessListener(unused -> {
             MyResources.dismissProgressDialog();
             binding.eventTitle.setText("");
             binding.eventDescription.setText("");

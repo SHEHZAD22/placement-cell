@@ -159,8 +159,8 @@
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
-                android:hint="@string/job_location" />
+                android:hint="@string/job_location"
+                android:inputType="textCapSentences" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

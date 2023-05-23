@@ -78,8 +78,8 @@
             android:id="@+id/hiddenLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/description"
@@ -92,14 +92,14 @@
 
             <TextView
                 android:id="@+id/url"
+                style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="5dp"
                 android:autoLink="web"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="14sp"
-                android:text="Event Url" />
+                android:text="Event Url"
+                android:textSize="14sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                     android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"

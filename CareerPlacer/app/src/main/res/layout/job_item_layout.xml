@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
@@ -71,8 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_time"
-                android:drawableTint="?attr/colorOnBackground"
                 android:drawablePadding="2dp"
+                android:drawableTint="?attr/colorOnBackground"
                 android:text="May 20, 2023" />
 
             <TextView

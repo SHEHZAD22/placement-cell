@@ -1,19 +1,15 @@
 package com.shehzad.careerplacer.student.ui.job;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.shehzad.careerplacer.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.shehzad.careerplacer.admin.model.JobModel;
-import com.shehzad.careerplacer.databinding.ActivityApplyJobBinding;
 import com.shehzad.careerplacer.databinding.ActivityViewJobBinding;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
@@ -38,18 +34,15 @@ public class ViewJobActivity extends AppCompatActivity {
 
         model = getIntent().getParcelableExtra("key");
 
+        binding.applyBtn.setOnClickListener(view -> onApplyBtnClicked());
+
         setData();
-
-        binding.applyBtn.setOnClickListener(view -> {
-
-            onApplyBtnClicked();
-
-        });
     }
 
     private void onApplyBtnClicked() {
         viewModel.isExist(model.getTitle(), model.getPosition()).observe(this, count -> {
-            if (count > 0) MyResources.showToast(getApplicationContext(), "Already Applied", "long");
+            if (count > 0)
+                MyResources.showToast(getApplicationContext(), "Already Applied", "long");
             else startActivity(new Intent(this, ApplyJobActivity.class));
         });
     }

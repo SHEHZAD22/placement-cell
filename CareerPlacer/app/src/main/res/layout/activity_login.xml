@@ -14,13 +14,13 @@
         android:orientation="vertical">
 
         <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textSize="30sp"
             android:layout_gravity="center"
             android:fontFamily="monospace"
-            android:text="Welcome Back" />
+            android:text="Welcome Back"
+            android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,8 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
-            android:textColor="@color/pink_a700"
-            android:text="Forgot Password?" />
+            android:text="Forgot Password?"
+            android:textColor="@color/pink_a700" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loginButton"
@@ -104,18 +104,18 @@
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
             android:layout_gravity="center"
-            android:text="OR"/>
+            android:layout_marginVertical="15dp"
+            android:text="OR" />
 
         <TextView
             android:id="@+id/admin"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorPrimary"
             android:layout_gravity="center"
-            android:text="Admin?"/>
+            android:text="Admin?"
+            android:textColor="?attr/colorPrimary" />
 
     </LinearLayout>
 

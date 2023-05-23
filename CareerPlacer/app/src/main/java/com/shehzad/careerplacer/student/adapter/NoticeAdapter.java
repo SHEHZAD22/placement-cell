@@ -26,8 +26,8 @@ import java.util.ArrayList;
 
 public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<EventModel> list;
+    private final Context context;
+    private final ArrayList<EventModel> list;
 
     public NoticeAdapter(Context context, ArrayList<EventModel> list) {
         this.context = context;

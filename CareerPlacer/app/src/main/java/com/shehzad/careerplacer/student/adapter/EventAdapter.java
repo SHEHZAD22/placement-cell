@@ -28,8 +28,8 @@ import java.util.ArrayList;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<EventModel> list;
+    private final Context context;
+    private final ArrayList<EventModel> list;
 
     public EventAdapter(Context context, ArrayList<EventModel> list) {
         this.context = context;

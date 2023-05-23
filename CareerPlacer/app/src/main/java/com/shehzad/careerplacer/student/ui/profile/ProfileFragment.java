@@ -1,7 +1,6 @@
 package com.shehzad.careerplacer.student.ui.profile;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,7 +44,7 @@ public class ProfileFragment extends Fragment {
     private int selectedTheme;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
@@ -57,11 +56,8 @@ public class ProfileFragment extends Fragment {
         studentReference = FirebaseDatabase.getInstance().getReference().child("Student/student_image");
 
         binding.changePassword.setOnClickListener(v -> showPopupDialog());
-
         binding.mode.setOnClickListener(v -> showThemeDialog());
-
         binding.signOut.setOnClickListener(view -> signOut());
-
         binding.delete.setOnClickListener(v -> deleteDialog());
 
         setStudentDetails();

@@ -1,14 +1,10 @@
 package com.shehzad.careerplacer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.shehzad.careerplacer.databinding.ActivityForgotPasswordBinding;
 import com.shehzad.careerplacer.utils.MyConstants;

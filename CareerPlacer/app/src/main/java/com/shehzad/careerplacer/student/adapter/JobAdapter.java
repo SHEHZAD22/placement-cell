@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shehzad.careerplacer.admin.model.JobModel;
@@ -24,9 +22,9 @@ import java.util.ArrayList;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<JobModel> list;
-    private AppliedJobViewModel viewModel ;
+    private final Context context;
+    private final ArrayList<JobModel> list;
+    private final AppliedJobViewModel viewModel;
 
     public JobAdapter(Context context, ArrayList<JobModel> list, AppliedJobViewModel viewModel) {
         this.context = context;
@@ -73,20 +71,14 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
 
             });
 
-
-            binding.apply.setOnClickListener(v -> {
-
-                checkIfItemAlreadyExist(model.getTitle(), model.getPosition());
-
-            });
+            binding.apply.setOnClickListener(v -> checkIfItemAlreadyExist(model.getTitle(), model.getPosition()));
         }
 
-        private void checkIfItemAlreadyExist(String title, String position){
+        private void checkIfItemAlreadyExist(String title, String position) {
             viewModel.isExist(title, position).observe((LifecycleOwner) context, count -> {
-                if (count > 0){
-                    MyResources.showToast(context,"Already Applied","long");
-                }
-                else {
+                if (count > 0) {
+                    MyResources.showToast(context, "Already Applied", "long");
+                } else {
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("position", position);
@@ -98,6 +90,5 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
             });
         }
     }
-
 
 }

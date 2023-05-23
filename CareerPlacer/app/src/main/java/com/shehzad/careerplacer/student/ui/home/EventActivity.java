@@ -1,13 +1,12 @@
 package com.shehzad.careerplacer.student.ui.home;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,10 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.databinding.ActivityEventBinding;
-import com.shehzad.careerplacer.databinding.ActivityResourceBinding;
-import com.shehzad.careerplacer.databinding.ActivityStudentBinding;
 import com.shehzad.careerplacer.student.adapter.EventAdapter;
-import com.shehzad.careerplacer.student.adapter.NoticeAdapter;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.ArrayList;

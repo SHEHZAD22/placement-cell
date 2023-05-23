@@ -1,24 +1,20 @@
 package com.shehzad.careerplacer.student.ui.home;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.admin.model.ResourceModel;
 import com.shehzad.careerplacer.databinding.ActivityResourceBinding;
-import com.shehzad.careerplacer.databinding.ActivityStudentBinding;
-import com.shehzad.careerplacer.student.adapter.NoticeAdapter;
 import com.shehzad.careerplacer.student.adapter.ResourceAdapter;
 import com.shehzad.careerplacer.utils.MyResources;
 
@@ -47,10 +43,8 @@ public class ResourceActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Resources");
 
         binding.resourceRecView.setLayoutManager(new LinearLayoutManager(this));
-//        binding.resourceRecView.setHasFixedSize(true);
 
         getData();
-
     }
 
     private void getData() {
@@ -64,7 +58,6 @@ public class ResourceActivity extends AppCompatActivity {
                 }
                 Collections.reverse(list);
                 adapter = new ResourceAdapter(ResourceActivity.this, list);
-//                adapter.notifyDataSetChanged();
                 binding.progressBar.setVisibility(View.GONE);
                 binding.resourceRecView.setAdapter(adapter);
             }

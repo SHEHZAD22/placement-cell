@@ -9,18 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/selectPdf"
             android:layout_width="130dp"
             android:layout_height="150dp"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            app:cardElevation="8dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,43 +49,43 @@
 
         <TextView
             android:id="@+id/viewPdf"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_file_selected"
             android:layout_gravity="center"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+            android:text="@string/no_file_selected" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titleInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
 
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_margin="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/resourceTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences|textMultiLine"
-                android:hint="@string/title" />
+                android:hint="@string/title"
+                android:inputType="textCapSentences|textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
 
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_margin="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/resourceDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences|textMultiLine"
-                android:hint="@string/description" />
+                android:hint="@string/description"
+                android:inputType="textCapSentences|textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,12 +112,12 @@
             android:id="@+id/resourceUploadBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
             android:padding="16dp"
-            android:textStyle="bold"
             android:text="@string/upload_resource"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

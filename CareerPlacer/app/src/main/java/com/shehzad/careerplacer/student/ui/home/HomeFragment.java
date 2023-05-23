@@ -1,23 +1,17 @@
 package com.shehzad.careerplacer.student.ui.home;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -32,7 +26,6 @@ import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.admin.model.RegisterModel;
 import com.shehzad.careerplacer.databinding.FragmentHomeBinding;
 import com.shehzad.careerplacer.student.adapter.JobAdapter;
-import com.shehzad.careerplacer.student.ui.job.JobFragment;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
@@ -52,7 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -63,7 +56,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         auth = FirebaseAuth.getInstance();
 
         viewModel = new ViewModelProvider(this).get(AppliedJobViewModel.class);
-
 
         binding.jobRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.jobRecView.setHasFixedSize(true);
@@ -77,14 +69,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Navigation.findNavController(v).navigate(R.id.navigation_job);
         });
 
-
         setStudentDetails();
 
         getData();
 
         return binding.getRoot();
     }
-
 
     private void getData() {
         if (MyResources.isConnectedToInternet(getContext())) {
@@ -158,15 +148,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-//    private boolean isConnectedToInternet() {
-//        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if (connectivityManager != null) {
-//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-//            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-//        }
-//        return false;
-//    }
 
     //showing an error dialog box
     private void showErrorSnackBar() {

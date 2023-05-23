@@ -126,14 +126,11 @@ public class AddResourcesActivity extends AppCompatActivity {
 
     private String getFileNameFromUri(Uri uri) {
         String result = "default";
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        try {
+        try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
             if (cursor != null && cursor.moveToFirst()) {
                 int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                 result = cursor.getString(index);
             }
-        } finally {
-            cursor.close();
         }
         return result;
     }

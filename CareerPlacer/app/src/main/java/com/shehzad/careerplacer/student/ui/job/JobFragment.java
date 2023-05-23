@@ -37,7 +37,7 @@ public class JobFragment extends Fragment {
 
     private FragmentJobBinding binding;
     private ArrayList<JobModel> list;
-//    private ArrayList<JobModel> searchList;
+    //    private ArrayList<JobModel> searchList;
     private JobAdapter adapter;
     private DatabaseReference reference;
     private AppliedJobViewModel viewModel;
@@ -54,10 +54,6 @@ public class JobFragment extends Fragment {
 
         binding.jobRecView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.jobRecView.setHasFixedSize(true);
-
-//        requireActivity().getActionBar().show();
-//        setHasOptionsMenu(true);
-
 
         binding.topAppBar.setOnMenuItemClickListener(item -> {
 //            int menuItem = item.getItemId();
@@ -101,12 +97,8 @@ public class JobFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     list = new ArrayList<>();
-//                    searchList = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-//                        String title = snapshot.child("title").getValue(String.class);
-//                        String description = snapshot.child("title").getValue(String.class);
-//                        if ()
                         JobModel data = snapshot.getValue(JobModel.class);
                         list.add(data);
                     }
@@ -136,34 +128,5 @@ public class JobFragment extends Fragment {
         });
         snackbar.show();
     }
-
-//    private boolean isConnectedToInternet() {
-//        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if (connectivityManager != null) {
-//            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-//            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-//        }
-//        return false;
-//    }
-
-//    @Override
-//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        inflater.inflate(R.menu.job_menu, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.search:
-//                MyResources.showToast(getContext(),"Search","long");
-//                break;
-//            case R.id.appliedJob:
-//                startActivity(new Intent(getActivity(),ShowAppliedJobActivity.class));
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
 
 }

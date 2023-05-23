@@ -30,31 +30,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                android:text="Posted on: "/>
+                android:text="Posted on: " />
 
             <TextView
                 android:id="@+id/postedDate"
+                style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:text="May 20, 2023"/>
+                android:text="May 20, 2023" />
 
             <TextView
                 android:id="@+id/postedTime"
+                style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:text="12:00 am"/>
+                android:text="12:00 am" />
         </LinearLayout>
 
         <RelativeLayout

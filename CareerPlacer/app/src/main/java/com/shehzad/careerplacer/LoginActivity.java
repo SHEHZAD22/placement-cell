@@ -1,19 +1,11 @@
 package com.shehzad.careerplacer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.shehzad.careerplacer.databinding.ActivityAdminLoginBinding;
 import com.shehzad.careerplacer.databinding.ActivityLoginBinding;
 import com.shehzad.careerplacer.student.StudentActivity;
 import com.shehzad.careerplacer.utils.MyConstants;
@@ -84,16 +76,6 @@ public class LoginActivity extends AppCompatActivity {
             MyResources.dismissProgressDialog();
             MyResources.showToast(getApplicationContext(), "Failure : \n" + e.getMessage(), "long");
         });
-    }
-
-
-    //Validation & error dialog
-    private void showErrorDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Login Failed")
-                .setMessage("Email or password is not correct. Please try again.")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .show();
     }
 
     private void startStudentActivity() {

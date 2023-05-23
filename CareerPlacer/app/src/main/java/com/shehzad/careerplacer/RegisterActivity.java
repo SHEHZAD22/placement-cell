@@ -16,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.shehzad.careerplacer.admin.model.EventModel;
 import com.shehzad.careerplacer.admin.model.RegisterModel;
 import com.shehzad.careerplacer.databinding.ActivityRegisterBinding;
 import com.shehzad.careerplacer.utils.MyConstants;
@@ -41,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
-
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -86,13 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
         MyResources.showProgressDialog(RegisterActivity.this, "Please Wait...");
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-//                MyResources.dismissProgressDialog();
-//                MyResources.showToast(RegisterActivity.this, "Registered Successfully", "short");
-                uploadImage();
-//                uploadData1();
-//                startLoginActivity();
-            } else {
+            if (task.isSuccessful()) uploadImage();
+            else {
                 MyResources.dismissProgressDialog();
                 MyResources.showToast(RegisterActivity.this, "Failed to Register: " + task.getException(), "short");
             }
@@ -114,20 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadData() {
-        String name = binding.name.getText().toString();
-        Log.d("check", "uploadData: " + downloadImgUrl);
-        reference = databaseReference.child("Student/student_image");
-        final String key = reference.push().getKey();
-
-        RegisterModel model = new RegisterModel(key,name,downloadImgUrl);
-        reference.child(key).setValue(model).addOnSuccessListener(unused -> {
-            Log.d("check", "uploadData: " + "World");
-            bitmap = null;
-        });
-
-    }
-
 
     private void uploadData1() {
         String name = binding.name.getText().toString();
@@ -137,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         String key = auth.getCurrentUser().getUid();
 
         Log.d("key", "uploadData: " + key);
-        RegisterModel model = new RegisterModel(key,name,downloadImgUrl);
+        RegisterModel model = new RegisterModel(key, name, downloadImgUrl);
         reference.child(key).setValue(model).addOnSuccessListener(unused -> {
             MyResources.dismissProgressDialog();
             MyResources.showToast(RegisterActivity.this, "Registered Successfully", "short");

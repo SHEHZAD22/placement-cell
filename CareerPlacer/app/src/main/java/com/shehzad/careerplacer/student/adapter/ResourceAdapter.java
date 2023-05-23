@@ -31,8 +31,8 @@ import java.util.regex.Pattern;
 
 public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<ResourceModel> list;
+    private final Context context;
+    private final List<ResourceModel> list;
 
     public ResourceAdapter(Context context, List<ResourceModel> list) {
         this.context = context;
@@ -76,21 +76,6 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
             if (pdfUrl != null && !pdfUrl.isEmpty()) {
                 binding.pdfName.setText(getPdfName(pdfUrl));
             }
-
-            //working
-//            if (model.getPdf() != null && !model.getPdf().isEmpty()) {
-//                binding.pdfName.setText(getPdfName(pdfUrl));
-//            }
-
-//            not working
-//            if (model.getPdf() != null || !model.getPdf().isEmpty()) {
-//                binding.pdfName.setText(getPdfName(pdfUrl));
-//            }
-
-            //working
-//            if (model.getPdf() != null) {
-//                binding.pdfName.setText(getPdfName(pdfUrl));
-//            }
 
             binding.resourceCard.setOnClickListener(view -> {
                 if (binding.hiddenLayout.getVisibility() == View.VISIBLE) {
@@ -154,10 +139,8 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-//                Log.d("decode", "getPdfUsingRegex: " + decoded);
             }
             return decoded;
         }
-
     }
 }
