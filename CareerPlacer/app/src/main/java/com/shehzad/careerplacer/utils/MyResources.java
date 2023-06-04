@@ -3,7 +3,6 @@ package com.shehzad.careerplacer.utils;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.Editable;
@@ -16,7 +15,6 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Random;
 
 public class MyResources {
     static ProgressDialog pd;
@@ -71,15 +69,6 @@ public class MyResources {
 
             }
         };
-    }
-
-    public static int getRandomColor() {
-        Random random = new Random();
-        int red = random.nextInt(256);
-        int green = random.nextInt(256);
-        int blue = random.nextInt(256);
-
-        return Color.argb(255, red, green, blue);
     }
 
     public static boolean isConnectedToInternet(Context context) {

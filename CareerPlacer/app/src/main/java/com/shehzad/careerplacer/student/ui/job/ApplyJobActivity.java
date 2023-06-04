@@ -23,6 +23,7 @@ import com.shehzad.careerplacer.databinding.ActivityApplyJobBinding;
 import com.shehzad.careerplacer.student.ui.job.db.AppliedJob;
 import com.shehzad.careerplacer.student.ui.job.model.StudentResumeModel;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
+import com.shehzad.careerplacer.utils.MyConstants;
 import com.shehzad.careerplacer.utils.MyResources;
 
 import java.util.Objects;
@@ -78,15 +79,14 @@ public class ApplyJobActivity extends AppCompatActivity {
 
         if (name.isEmpty()) binding.nameInputLayout.setError("Must not be empty");
         else if (email.isEmpty()) binding.emailInputLayout.setError("Must not be empty");
-        else if (phoneNumber.isEmpty())
-            binding.phoneNumberInputLayout.setError("Must not be empty");
-        else if (qualification.isEmpty())
-            binding.qualificationInputLayout.setError("Must not be empty");
+        else if (!email.matches(MyConstants.emailPattern)) binding.emailInputLayout.setError("Enter Correct Email");
+        else if (phoneNumber.isEmpty()) binding.phoneNumberInputLayout.setError("Must not be empty");
+        else if (phoneNumber.length() != 10) binding.phoneNumberInputLayout.setError("Phone Number is not correct");
+        else if (qualification.isEmpty()) binding.qualificationInputLayout.setError("Must not be empty");
         else if (branch.isEmpty()) binding.branchInputLayout.setError("Must not be empty");
         else if (pincode.isEmpty()) binding.pincodeInputLayout.setError("Must not be empty");
         else if (location.isEmpty()) binding.locationInputLayout.setError("Must not be empty");
-        else if (binding.viewPdf.getText().toString().equals("No file selected") || pdfUri == null)
-            MyResources.showToast(this, "Please Select Resume", "long");
+        else if (binding.viewPdf.getText().toString().equals("No file selected") || pdfUri == null) MyResources.showToast(this, "Please Select Resume", "long");
         else uploadPdf();
 
     }

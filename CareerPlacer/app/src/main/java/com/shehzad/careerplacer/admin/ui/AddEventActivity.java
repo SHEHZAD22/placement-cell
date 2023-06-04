@@ -51,7 +51,6 @@ public class AddEventActivity extends AppCompatActivity {
         binding.eventDescription.addTextChangedListener(MyResources.createTextWatcher(binding.descriptionInputLayout));
     }
 
-
     private void onUploadBtnClicked() {
         String title = Objects.requireNonNull(binding.eventTitle.getText()).toString();
         String description = Objects.requireNonNull(binding.eventDescription.getText()).toString();

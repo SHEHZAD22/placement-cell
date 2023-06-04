@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_job"
-        android:name="com.shehzad.careerplacer.student.ui.job.JobFragment"
+        android:name="com.shehzad.careerplacer.student.ui.job.ShowAppliedJobFragment"
         android:label="Job"
-        tools:layout="@layout/fragment_job" />
+        tools:layout="@layout/fragment_show_applied_job" />
 
     <fragment
         android:id="@+id/navigation_profile"

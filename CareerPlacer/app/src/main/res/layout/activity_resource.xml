@@ -10,6 +10,7 @@
         android:id="@+id/resourceRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/resource_item_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

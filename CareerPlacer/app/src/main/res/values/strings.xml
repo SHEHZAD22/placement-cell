@@ -73,4 +73,13 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+    <string-array name="theme">
+
+        <item>System Default</item>
+        <item>Dark Mode</item>
+        <item>Light Mode</item>
+
+    </string-array>
+
 </resources>

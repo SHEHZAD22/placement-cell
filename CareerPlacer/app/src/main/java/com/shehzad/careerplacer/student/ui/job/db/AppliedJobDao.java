@@ -16,7 +16,9 @@ public interface AppliedJobDao {
     @Query("SELECT * FROM applied_job")
     LiveData<List<AppliedJob>> getAll();
 
-    @Query("SELECT COUNT() FROM applied_job WHERE title = :title AND position = :position")
+    @Query("SELECT COUNT() " +
+            "FROM applied_job WHERE title = :title " +
+            "AND position = :position")
     int isExist(String title, String position);
 
 }

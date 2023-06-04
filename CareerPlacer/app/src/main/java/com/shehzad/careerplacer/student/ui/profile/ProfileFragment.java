@@ -1,8 +1,6 @@
 package com.shehzad.careerplacer.student.ui.profile;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +27,7 @@ import com.shehzad.careerplacer.databinding.DialogThemeBinding;
 import com.shehzad.careerplacer.databinding.FragmentProfileBinding;
 import com.shehzad.careerplacer.databinding.PopupDialogBinding;
 import com.shehzad.careerplacer.utils.MyResources;
+import com.shehzad.careerplacer.utils.MySharedPreferences;
 
 
 public class ProfileFragment extends Fragment {
@@ -38,9 +37,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference studentReference;
 
-    private SharedPreferences sharedPreferences;
-    public static final String THEME_PREF = "themePref";
-    public static final String SELECTED_THEME = "selectedTheme";
+    private MySharedPreferences mySharedPreferences;
     private int selectedTheme;
 
     @Override
@@ -49,8 +46,8 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        sharedPreferences = getActivity().getSharedPreferences(THEME_PREF, Context.MODE_PRIVATE);
-        selectedTheme = sharedPreferences.getInt(SELECTED_THEME, AppCompatDelegate.MODE_NIGHT_UNSPECIFIED);
+        mySharedPreferences = new MySharedPreferences(getContext());
+        selectedTheme = mySharedPreferences.getThemePref();
 
         auth = FirebaseAuth.getInstance();
         studentReference = FirebaseDatabase.getInstance().getReference().child("Student/student_image");
@@ -64,7 +61,6 @@ public class ProfileFragment extends Fragment {
 
         return binding.getRoot();
     }
-
 
     private void showPopupDialog() {
         PopupDialogBinding popBinding = PopupDialogBinding.inflate(getLayoutInflater());
@@ -107,16 +103,12 @@ public class ProfileFragment extends Fragment {
         studentReference.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    RegisterModel model = snapshot.getValue(RegisterModel.class);
-                    if (model != null) {
-                        binding.name.setText(model.getName());
-                        Glide.with(getContext()).load(model.getImage())
-                                .placeholder(R.drawable.nophoto)
-                                .error(R.drawable.nophoto)
-                                .into(binding.profileImage.studentImage);
-                    }
-                } else MyResources.showToast(getContext(), "No Image found", "short");
+                RegisterModel model = snapshot.getValue(RegisterModel.class);
+                if (model != null) {
+                    binding.name.setText(model.getName());
+                    Glide.with(getContext()).load(model.getImage())
+                            .into(binding.profileImage.studentImage);
+                }
             }
 
             @Override
@@ -174,9 +166,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void saveSelectedTheme() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(SELECTED_THEME, selectedTheme);
-        editor.apply();
+        mySharedPreferences.setThemePref(selectedTheme);
     }
 
     private void signOut() {

@@ -96,6 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
             app:prefixText="+91">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -160,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            app:placeholderText="ex: Gurugram India">
+            app:placeholderText="ex: 122001">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pincode"

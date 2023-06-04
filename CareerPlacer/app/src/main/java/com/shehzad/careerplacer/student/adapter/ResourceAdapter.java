@@ -95,7 +95,6 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
                 binding.url.setText(model.getUrl());
             }
 
-
             binding.pdfName.setOnClickListener(v -> {
                 if (pdfUrl != null && !pdfUrl.isEmpty()) {
                     DownloadManager.Request request = new DownloadManager.Request(Uri.parse(pdfUrl));

@@ -2,7 +2,6 @@ package com.shehzad.careerplacer.student.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +24,7 @@ import com.shehzad.careerplacer.admin.model.JobModel;
 import com.shehzad.careerplacer.admin.model.RegisterModel;
 import com.shehzad.careerplacer.databinding.FragmentHomeBinding;
 import com.shehzad.careerplacer.student.adapter.JobAdapter;
+import com.shehzad.careerplacer.student.ui.job.AllJobActivity;
 import com.shehzad.careerplacer.student.ui.job.viewmodel.AppliedJobViewModel;
 import com.shehzad.careerplacer.utils.MyResources;
 
@@ -42,7 +41,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference studentReference;
     private FirebaseAuth auth;
     private AppliedJobViewModel viewModel;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -63,11 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.events.setOnClickListener(this);
         binding.notices.setOnClickListener(this);
         binding.resources.setOnClickListener(this);
-
-        binding.seeAll.setOnClickListener(v -> {
-            MyResources.showToast(getContext(), "Press back button to go back", "l");
-            Navigation.findNavController(v).navigate(R.id.navigation_job);
-        });
+        binding.seeAll.setOnClickListener(v -> startActivity(new Intent(getActivity(), AllJobActivity.class)));
 
         setStudentDetails();
 
@@ -101,30 +95,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     MyResources.showToast(getContext(), error.getMessage(), "short");
                 }
             });
+
         } else showErrorSnackBar();
     }
 
     private void setStudentDetails() {
         String key = auth.getCurrentUser().getUid();
-        Log.d("called", "setStudentDetails: " + "true");
-
-        studentReference.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        studentReference.child(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("inside", "true");
-                if (snapshot.exists()) {
-                    Log.d("snapshot", "true");
-                    RegisterModel model = snapshot.getValue(RegisterModel.class);
-                    if (model != null) {
-                        Log.d("register", "true");
-                        Log.d("student", "onDataChange: " + model.getName() + model.getImage() + model.getKey() + key);
-                        binding.studentName.setText(model.getName());
-                        Glide.with(getContext()).load(model.getImage())
-                                .placeholder(R.drawable.nophoto)
-                                .error(R.drawable.nophoto)
-                                .into(binding.studentImage.studentImage);
-                    }
-                } else MyResources.showToast(getContext(), "No Image found", "short");
+                RegisterModel model = snapshot.getValue(RegisterModel.class);
+                if (model != null) {
+                    binding.studentName.setText(model.getName());
+                    Glide.with(getContext())
+                            .load(model.getImage())
+                            .into(binding.studentImage.studentImage);
+                }
             }
 
             @Override

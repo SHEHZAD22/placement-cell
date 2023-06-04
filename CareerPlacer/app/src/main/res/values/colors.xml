@@ -31,10 +31,12 @@
 
     <color name="brown_a200">#CC760C</color>
 
-    <color name="color1">#00BCD4</color>
-    <color name="color2">#E91E63</color>
-    <color name="color3">#9C27B0</color>
-    <color name="color4">#CDDC39</color>
+    <color name="color1">#D0EC05</color>
+    <color name="color2">#DEF325</color>
+    <color name="color3">#ECE92E</color>
+    <color name="color4">#D5EC2E</color>
     <color name="color5">#FFC107</color>
+
+
 
 </resources>

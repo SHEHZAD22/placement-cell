@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shehzad.careerplacer.admin.model.JobModel;
@@ -23,13 +24,18 @@ import java.util.ArrayList;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
 
     private final Context context;
-    private final ArrayList<JobModel> list;
+    private ArrayList<JobModel> list;
     private final AppliedJobViewModel viewModel;
 
     public JobAdapter(Context context, ArrayList<JobModel> list, AppliedJobViewModel viewModel) {
         this.context = context;
         this.list = list;
         this.viewModel = viewModel;
+    }
+
+    public void filterList(ArrayList<JobModel> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -50,6 +56,18 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
         return list.size();
     }
 
+    //this method is for searchView
+    public void filter(String query, ArrayList<JobModel> list) {
+        ArrayList<JobModel> filteredList = new ArrayList<>();
+
+        for (JobModel model : list)
+            if (model.getTitle().toLowerCase().contains(query.toLowerCase()) || model.getSkills().toLowerCase().contains(query.toLowerCase()))
+                filteredList.add(model);
+
+        if (filteredList.isEmpty()) MyResources.showToast(context, "No Data Found...", "short");
+        else filterList(filteredList);
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final JobItemLayoutBinding binding;
 
@@ -66,6 +84,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
 
             binding.viewDetails.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ViewJobActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("key", list.get(position));
                 context.startActivity(intent);
 
@@ -75,8 +94,9 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
         }
 
         private void checkIfItemAlreadyExist(String title, String position) {
-            viewModel.isExist(title, position).observe((LifecycleOwner) context, count -> {
-                if (count > 0) {
+
+            viewModel.isExist(title, position).observeForever(integer -> {
+                if (integer > 0) {
                     MyResources.showToast(context, "Already Applied", "long");
                 } else {
                     Bundle bundle = new Bundle();
@@ -84,10 +104,28 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.MyViewHolder> {
                     bundle.putString("position", position);
                     Log.d("bundle", "bind: " + bundle.getString("title") + bundle.getString("position"));
                     Intent intent = new Intent(context, ApplyJobActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });
+
+            //not working: warning: Application cannot be cast to LifecycleOwner
+//            LifecycleOwner lifecycleOwner = (LifecycleOwner) context;
+//            viewModel.isExist(title, position).observe(lifecycleOwner, count -> {
+//                if (count > 0) {
+//                    MyResources.showToast(context, "Already Applied", "long");
+//                } else {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("title", title);
+//                    bundle.putString("position", position);
+//                    Log.d("bundle", "bind: " + bundle.getString("title") + bundle.getString("position"));
+//                    Intent intent = new Intent(context, ApplyJobActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.putExtras(bundle);
+//                    context.startActivity(intent);
+//                }
+//            });
         }
     }
 

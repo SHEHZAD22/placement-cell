@@ -106,7 +106,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
 
             binding.image.setOnClickListener(view -> {
-
                 if (model.getImage().isEmpty() || model.getImage() == null) {
                     MyResources.showToast(context, "No image found", "short");
                 } else {
@@ -114,7 +113,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                     intent.putExtra("image", model.getImage());
                     context.startActivity(intent);
                 }
-
             });
         }
     }
