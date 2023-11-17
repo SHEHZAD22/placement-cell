@@ -9,10 +9,10 @@ An application designed to streamline the placement process for college students
 <img src="https://github.com/SHEHZAD22/placement-cell/assets/73515432/620b62e4-6c55-4fb3-aadd-299ff3a95f0a" width="30%">
 
 # Features
-1. Login and Signup
-2. View Job details and apply easily
-3. Search jobs
-4. See the events, notices from college
+- Login and Signup
+- View Job details and apply easily
+- Search jobs
+- See the events, notices from college
 
 # Tech-Stack
 ## Frontend
