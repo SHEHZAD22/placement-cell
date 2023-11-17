@@ -22,6 +22,6 @@ An application designed to streamline the placement process for college students
 ## Backend
 - Java
 - Firebase (for user authentication)
-- ### Database
+- Database
   - Room db
   - Firebase realtime database
